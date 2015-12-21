@@ -1,10 +1,6 @@
 'use strict';
 
-var YAHOO_WEATHER_API_ENDPOINT = 'https://query.yahooapis.com/' +
-  'v1/public/yql?q=select%20*%20from%20weather.forecast%20where%' +
-  '20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where' +
-  '%20text%3D%22london%2C%20uk%22)&format=json&env=store%3A%2F%2' +
-  'Fdatatables.org%2Falltableswithkeys';
+var API_ENDPOINT = 'https://www.kimonolabs.com/api/8nnai52q?apikey=xb0xhlk9iYz4jhhHC6yd0Mj2BUxC7Ns6';
 
 function showNotification(title, body, icon, data) {
   console.log('showNotification');
@@ -28,11 +24,11 @@ self.addEventListener('push', function(event) {
   // of Push notifications, here we'll grab some data from
   // an API and use it to populate a notification
   event.waitUntil(
-    fetch(YAHOO_WEATHER_API_ENDPOINT)
+    fetch(API_ENDPOINT)
       .then(function(response) {
         if (response.status !== 200) {
           // Throw an error so the promise is rejected and catch() is executed
-          throw new Error('Invalid status code from weather API: ' +
+          throw new Error('Invalid status code from API: ' +
             response.status);
         }
 
@@ -40,19 +36,20 @@ self.addEventListener('push', function(event) {
         return response.json();
       })
       .then(function(data) {
-        console.log('Weather API data: ', data);
-        if (data.query.count === 0) {
+        console.log('Trends API data: ', data);
+        if (data.results.count === 0) {
           // Throw an error so the promise is rejected and catch() is executed
           throw new Error();
         }
 
-        var title = 'What\'s the weather like in London?';
-        var message = data.query.results.channel.item.condition.text;
-        var icon = data.query.results.channel.image.url ||
-          'images/touch/chrome-touch-icon-192x192.png';
+        var title = 'What\'s new in Trends?';
+        var message = data.results.collection1[0].property1;
+        var icon = data.results.collection1[0].property2.src || '/images/googleg_standard_color_128dp.png';
 
         // Add this to the data of the notification
-        var urlToOpen = data.query.results.channel.link;
+        var url = data.results.collection1[0].property4[0];
+        var urlToOpen = 'https://www.google.com/' + url.slice(3);
+        console.log('urlToOpen: ' + urlToOpen);
 
         var notificationFilter = {
           tag: 'simple-push-demo-notification'
@@ -84,8 +81,8 @@ self.addEventListener('push', function(event) {
                 }
                 existingNotification.close();
               }
-              message = 'You have ' + notificationCount +
-                ' weather updates.';
+              // message = 'You have ' + notificationCount +
+              //   ' news updates.';
               notificationData.notificationCount = notificationCount;
             }
 

@@ -6,7 +6,7 @@
   <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Simple Push Demo</title>
+  <title>Google Trends Push Demo</title>
 
   <link rel="manifest" href="manifest.json">
 
@@ -21,11 +21,9 @@
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">Push Demo</span>
+        <span class="mdl-layout-title"><img src="https://www.gstatic.com/images/branding/lockups/1x/lockup_trends_light_color_142x24dp.png" alt=""> Push Demo</span>
         <div class="mdl-layout-spacer"></div>
         <nav class="mdl-navigation mdl-layout--large-screen-only">
-          <a class="mdl-navigation__link" href="https://github.com/gauntface/simple-push-demo">Github</a>
-          <a class="mdl-navigation__link" href="https://developers.google.com/web/updates/2015/03/push-notifications-on-the-open-web?hl=en">Blog Post</a>
         </nav>
       </div>
     </header>
@@ -40,32 +38,25 @@
 
       <div class="content-overlap-wrapper">
         <div class="send-push-options js-send-push-options">
-          <p class="center">
-            <button class="xhr-button js-send-push-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
-              Send a Push to GCM via XHR
-            </button>
-          </p>
-
-          <p class="center">OR</p>
-
           <p>Copy and paste the following CURL command into your terminal
           to send a push message to your browser.</p>
 
           <code class="curl-code-example js-curl-code"></code>
+  <br/>
+          <p class="center">OR</p>
+
+          <p class="center">
+            <button class="xhr-button js-send-push-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+              Send push notification
+            </button>
+          </p>
+
         </div>
         <div class="error-message-container js-error-message-container">
           <h1 class="error-title js-error-title"></h1>
           <p class="error-message js-error-message"></p>
         </div>
       </div>
-
-      <p class="center">
-        The Weather API is
-        <br />
-        <a href="https://www.yahoo.com/?ilc=401" target="_blank">
-          <img src="https://poweredby.yahoo.com/purple.png" width="134" height="29"/>
-        </a>
-      </p>
     </main>
   </div>
 

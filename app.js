@@ -9,7 +9,7 @@ var ece = require('http_ece');
 var base64 = require('base64url');
 
 const GCM_ENDPOINT = 'https://android.googleapis.com/gcm/send';
-const GCM_AUTHORIZATION = 'AIzaSyBBh4ddPa96rQQNxqiq_qQj7sq1JdsNQUQ';
+const GCM_AUTHORIZATION = 'AIzaSyBlgvVGZEeBi2HPX-FPS6xgODvR6gg0hB0';
 
 var app = express();
 app.use(bodyParser.urlencoded({extended: true}));
@@ -124,7 +124,7 @@ function sendPushMessage(endpoint, keys) {
  * https://github.com/martinthomson/webpush-client/
  *
  */
-app.post('/send_web_push', function(req, res) {
+app.post('/send_push', function(req, res) {
   var endpoint = req.body.endpoint;
   var keys = req.body.keys;
   if (!endpoint) {

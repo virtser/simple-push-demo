@@ -21,7 +21,7 @@
 
 import PushClient from './push-client.es6.js';
 
-var API_KEY = 'AIzaSyBBh4ddPa96rQQNxqiq_qQj7sq1JdsNQUQ';
+var API_KEY = 'AIzaSyBlgvVGZEeBi2HPX-FPS6xgODvR6gg0hB0';
 
 // Define a different server URL here if desire.
 var PUSH_SERVER_URL = '';
@@ -81,6 +81,14 @@ function updateUIForPush(pushToggleSwitch) {
         API_KEY + '" --header Content-Type:"application/json" ' +
         curlEndpoint + ' -d "{\\"registration_ids\\":[\\"' +
         subscriptionId + '\\"]}"';
+
+      fetch(PUSH_SERVER_URL + '/subscribe', {
+        method: 'post',
+        body: subscriptionId
+      }).then(function(response) {
+        return response;
+      });
+
       return curlCommand;
     };
 
@@ -107,7 +115,7 @@ function updateUIForPush(pushToggleSwitch) {
       var headers = new Headers();
       headers.append('Content-Type', 'application/json');
 
-      fetch(PUSH_SERVER_URL + '/send_web_push', {
+      fetch(PUSH_SERVER_URL + '/send_push', {
         method: 'post',
         headers: headers,
         body: JSON.stringify(subscription)
